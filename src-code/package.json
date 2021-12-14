@@ -1,15 +1,12 @@
 {
-  "name": "movies",
+  "name": "package.json",
   "version": "1.0.0",
-  "description": "Sample movie class",
+  "description": "Sample Person class",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "lodash": "4.17.21"
-  }
+  "type": "module"
 }

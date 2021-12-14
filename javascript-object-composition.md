@@ -1,5 +1,5 @@
 
-# Class Composition
+# Node, JavaScript Classes & Composition Basics 
 
 <img src="https://stackify.com/wp-content/uploads/2017/08/Javascript-vs-Typescript-793x397.jpg" width="500" />
 
@@ -12,6 +12,17 @@
 - Review class syntax in JS 
 - Understand how objects can interact and reference one another
 - Explore method chaining 
+- Discuss the basics of object inheritance
+- Make brief mention of inheritance 
+
+---
+
+## A Note on how the curriculum is delivered 
+
+* contrived for beginners
+* not every assignment will be a reflection of the very best practices, but instead organized to help learn essentials
+* focus on full-stack integration essentials 
+* domain-knowledge depth *as-needed*
 
 ---
 
@@ -20,7 +31,7 @@
 - Node projects will have a project root
 - Usually there will be a `package.json`
 - The `package.json` defines `dependencies` and `devDependencies`
-- Also has important setup options, such as `"type": "module"`
+- Also has other important setup options, such as `"type": "module"`
 
 ---
 
@@ -38,7 +49,7 @@
 - The `npm` client (installed when you installed node) is prone to bugs and issues
 - `yarn` is faster and more reliable
 - You should `yarn install` when you are working with a new node project that has a `package.json` present
-- If there is a `package-lock.json`, you should instead use `npm` to manage dependencies
+- If there is a `package-lock.json`, you should instead use `npm` to manage dependencies and delete the `package-lock.json`
 - Launch will uniformly use `yarn`
 
 ---
@@ -85,7 +96,7 @@ class Person {
   }
 
   fullName() {
-    return [this.firstName, this.lastName].join(' ')
+    return `${this.firstName} ${this.lastName}, Actor`
   }
 }
 
@@ -94,9 +105,26 @@ export default Person
 
 ---
 
+## so that we can utilize the constant/class in another file
+
+```javascript
+import Person from './Person.js'
+// import Movie from "./Movie.js"
+
+const actorOne = new Person('Daniel', 'Radcliffe')
+```
+
+---
+
 ## We can `export default` Any Constant
 
 Check out `node/movieGenres.js`
+
+```js
+const movieGenres = ['Action', 'Comedy', 'Romance', 'Sci Fi', 'Thriller']
+
+export default movieGenres
+```
 
 We can load this array in `node/main.js` like so:
 
@@ -112,15 +140,21 @@ genres.forEach(genre => {
 
 ## `import` Loads the Default Export from Another File
 
-- We can assign the constant to any variable name
-- Convention wise, we try to mirror what the export is
+*Optional alias of the import*
+
+```js
+import Person as Nick from '/modules/my-module.js';
+```
+
+- We can assign the constant to any variable name as we import  
+- Convention wise, we try to mirror what the export name is, if any, or the class name
 
 ---
 
 ## Making a Movie - Class Composition
 
 - A movie requires the work and energy of many people.
-- We can **couple** a `Movie` object to a list of actors.
+- We might **couple** a `Movie` object to a list of actors.
 
 Let's create `node/Movie.js`
 
@@ -162,6 +196,12 @@ movie.hireActor(actorTwo)
 console.log(`${movie.getDescription()}`)
 ```
 
+```
+Harry Potter and the Sorcerer's Stone
+===
+Starring: Daniel Radcliffe, Actor, Emma Watson, Actor
+```
+
 ---
 
 ## A Look Closer at the `node/Movie.js` `getDescription`
@@ -176,19 +216,102 @@ const castList = this.cast.map(person => person.fullName()).join(', ')
 
 ---
 
-## Let's Change Our `Person` class to include more functionality
+## Let's Change Our Person class to include more functionality
 
 - Though the implementation of our `Person` `fullName` has changed, the way in which we call it hasn't.
 - The behavior of the coupled method changes, but we don't have to make any code changes there
+
+--- 
+
 
 ---
 
 ## Our Vocabulary Grows Richer
 
-- We can _compose_ objects with other objects
+- We can _compose_ objects, and have them run as a larger program with other objects
 - Having our custom objects interact with one another allows us to improve our metaphor and abstraction
+- This is the *beginning* of the basics of "Object Composition
+- Skill improves the more depth of logic you have in your apps
+---
+--- 
+
+## Object Composition
+
+Composition is about building complex objects from simple components to make it our code easier to use, rather than storing more logic in a class, or relying on inheritance.
+
+--- 
+---
+## Inheritance
+
+Inheritance is when a class is based on another using the same implementation. 
+
+A Lamborghini (subclass) would gain methods and properties from a vehicle (superclass) like brake and accelerate. The Lambo will include its own properties like colour. This creates a relationship of a Lamborghini is a vehicle. 
+
+We'll talk about this more later, but due to the size of our applications, will have fewer opportunities to use inheritance right away. 
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Lamborghini_Huracan_LP_610-4_Spyder_IMG_2644.jpg/440px-Lamborghini_Huracan_LP_610-4_Spyder_IMG_2644.jpg" width="200" height="100"/>
 
 ---
+
+## Inheritance with a Person
+
+```js
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName
+    this.lastName = lastName
+  }
+
+  fullName() {
+    return `${this.firstName} ${this.lastName}, Actor`
+  }
+}
+
+export default Person
+```
+---
+
+## Inheritance with a Person
+
+```js
+import Person from "./Person.js"
+
+class Patron extends Person {
+    constructor(firstName, lastName, favoriteMovie) {
+    // Here, it calls the parent class's constructor with lengths
+    // provided for the Rectangle's width and height
+        super(firstName, lastName)
+        this.favoriteMovie = favoriteMovie
+    }
+
+    interruptMovie(){
+        return "THIS ACTING ISN'T BELIEVABLE!! Also I love my loud cell phone!"
+    }
+
+    // fullName() method should work fine on this class!
+}
+
+export default Patron
+```
+
+--- 
+
+## Composition
+
+Composition is about taking simple objects and combining them to build more complex ones. 
+
+Lamborghini you might define a function for constructing essential features like engine, design and brakes. This creates a relationship of a Lamborghini has a engine, brakes and design.
+
+---
+
+## Beyond 
+
+* At the moment, our applications are still small. 
+* The need to do things like make factories, decorators, mixins and even use prototypcal inheritance is pretty low. 
+* As our applications evolve, we will start to talk about these concepts more
+* focus on procedural knowledge needed in order to run our web apps first and foremost. 
+
+--- 
 
 # Review
 - `npm` and `yarn` are used together to help us install and run our dependencies

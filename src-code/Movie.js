@@ -10,9 +10,8 @@ class Movie {
   
   getDescription() {
     // debugger
-
     const castList = this.cast.map(person => person.fullName()).join(', ')
-
+    
     return `${this.title}\n` + `===\n` + `Starring: ${castList}`
   }
 }
