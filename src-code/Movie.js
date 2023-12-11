@@ -4,16 +4,28 @@ class Movie {
     this.cast = []
   }
 
-  hireActor(person) {
-    this.cast.push(person)
+  hireActor(personObject) {
+    this.cast.push(personObject)
   }
-  
+
   getDescription() {
-    // debugger
-    const castList = this.cast.map(person => person.fullName()).join(', ')
+    let summaryString = ""
+
+    summaryString += this.title
+    summaryString += "\n======"
+    summaryString += "\nStarring:"
+
+    this.cast.forEach((personObject) => {
+      summaryString += `\n${personObject.fullName()}`
+    })
+
+    return summaryString
+
+    // iterate over the cast members, and get their name strings
     
-    return `${this.title}\n` + `===\n` + `Starring: ${castList}`
+    // return a string with the title, and actors full names
   }
+
 }
 
 export default Movie

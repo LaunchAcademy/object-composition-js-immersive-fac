@@ -1,6 +1,6 @@
 class Person {
   constructor(firstName, lastName) {
-    this.firstName = firstName
+    this.firstName = firstName 
     this.lastName = lastName
   }
 
@@ -10,6 +10,35 @@ class Person {
 }
 
 export default Person
+// const jason = new Person("Marlon", "Sanchez")
+// const tracy = new Person("Nick", "deRis")
+// console.log(jason)
+
+const createPerson = (firstNameString, lastNameString) => {
+  return {
+    firstName: firstNameString, 
+    lastName: lastNameString
+  }
+}
+// createPerson("Jason", "Berk")
+
+const me = { 
+  firstName: "Nick", 
+  lastName: "Alberts",
+  fullName: () => {
+    return `${this.firstName} ${this.lastName}`
+  } 
+}
+
+
+
+
+
+
+
+
+
+
 
 // If needed for considering object composition
 

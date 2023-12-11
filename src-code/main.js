@@ -9,7 +9,5 @@ const movie = new Movie("Harry Potter and the Sorcerer's Stone")
 movie.hireActor(actorOne)
 movie.hireActor(actorTwo)
 
-debugger
-
 console.log(`${movie.getDescription()}`)
 
